@@ -33,10 +33,10 @@ class GameChart extends Component {
 
 	  return (
 
-	  	 <HighchartsChart>
-          <Chart type ="line" animation={true}/>
+	  	 <HighchartsChart  >
+          <Chart type ="line" animation={true} height={800} />
 
-          <Title>Market</Title>
+          <Title>MSCI World Index</Title>
 
           <Legend enabled={false}>
             <Legend.Title>Legend</Legend.Title>
