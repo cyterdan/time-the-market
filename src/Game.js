@@ -6,16 +6,18 @@ import GameChart from './GameChart'
 import Portfolio from './Portfolio'
 import msciWorld from './msciWorld'
 
-
+//generate random integer between min and max
 function randomIntFromInterval(min, max){
         return Math.floor(Math.random() * (max - min + 1) + min);
     };
 
+// 2000-01-01 => UTC date
 function dateFromStr(str) {
         var parts = str.split("-");
         return Date.UTC(parts[0], parts[1] - 1, parts[2])
     }
 
+//initializing 
 const rand =randomIntFromInterval(0, msciWorld.length-12*8);
 const initialState = {
     		firstChange : true,
@@ -30,31 +32,26 @@ const initialState = {
   		};
 
 class Game extends Component {
-
-	
     
 	constructor(props) {
   		super(props);
-  		 //select a number randomely, 473 is a magic date (8 years before dataset end)
-  		
-
+  	
   		this.state = initialState;
   
 	};
 
     risk(proportion) {
         if (proportion === 0)
-            return {color: '#edffd0', label: '0% invested'};
+            return {color: '#edffd0', label: '0% '+this.props.i18n['stocks']};
         if (proportion === 20)
-            return {color: '#d3ffba', label: '20% invested'};
+            return {color: '#d3ffba', label: '20% '+this.props.i18n['stocks']};
         if (proportion === 50)
-            return {color: '#b7ffa2', label: '50%  invested'};
+            return {color: '#b7ffa2', label: '50% '+this.props.i18n['stocks']};
         if (proportion === 80)
-            return {color: '#97ff88', label: '80% invested'};
+            return {color: '#97ff88', label: '80% '+this.props.i18n['stocks']};
         if (proportion === 100)
-            return {color: '#70ff69', label: '100% invested '};
+            return {color: '#70ff69', label: '100% '+this.props.i18n['stocks']};
         ;
-
     }
 
 	addBand(from,to,color,label){
@@ -121,70 +118,80 @@ class Game extends Component {
 	openModal = () => {
     	this.setState({ showModal: true });
 	}
-  render() {
-    return (
-      <div> 
-      	<Row>
-      		<Panel>
-      		
-      		<Col xs={6} md={12}>
-      			<h4>The goal of this game is to demonstrate the difficulty of timing the market</h4>
 
-				<h5><i>Initial idea came from <a href="https://qz.com/487013/this-game-will-show-you-just-how-foolish-it-is-to-sell-stocks-right-now/">this similar game</a> only adapted to 
-					a typical French investor scenario</i></h5>
-				 
-			</Col>
-			<Col xs={12} md={12} >
-				<Button onClick={this.openModal}> View Instructions </Button>
 
-				<Modal show={this.state.showModal} onHide={this.closeModal}>
-          <Modal.Header closeButton>
-            <Modal.Title>How to play ?</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <h4>You are given an initial capital of 10000€ <br/><br/>
-    
-    Over a period of 8 years (randomly selected), you will decide how much of your portfolio 
-    should be in "the market" (we'll use MSCI World index in this case).
-    The rest of your capital will be invested in a €-fund (fixed 2% annual return)<br/><br/>
-    
-    You can, of course, change your allocation at any time if you feel like a reversal is coming.
-    
-    At the end of the simulation, we'll compare your strategy with a portfolio 100% invested in the market.
+	  render() {
+	    return (
+	     <div> 
+	      	<Row>
+	      		<Panel>
+	      		
+	      		<Col xs={6} md={12}>
+	      			<h4>{this.props.i18n['title']}</h4>
 
-    <br/>
-    The game will start as soon as you choose an initial allocation.
-</h4>
-           </Modal.Body>
-          <Modal.Footer>
-            <Button onClick={this.closeModal}>Close</Button>
-          </Modal.Footer>
-        </Modal>
-		  	</Col>
+					<h5><i>{this.props.i18n['subtitle1']}
+					<a href="https://qz.com/487013/this-game-will-show-you-just-how-foolish-it-is-to-sell-stocks-right-now/">{this.props.i18n['subtitleLink']}</a>
+					{this.props.i18n['subtitle2']}</i></h5>
+					 
+				</Col>
+				<Col xs={12} md={12} >
+					<Button onClick={this.openModal}> {this.props.i18n['instructionBtn']}  </Button>
+
+					<Modal show={this.state.showModal} onHide={this.closeModal}>
+			          <Modal.Header closeButton>
+			            <Modal.Title>{this.props.i18n['modal.title']}</Modal.Title>
+			          </Modal.Header>
+			          <Modal.Body>
+			            <h4> {this.props.i18n['modal.body.1']}
+			            	<br />
+			            	<br />
+			    
+			    			{this.props.i18n['modal.body.2']}
+			    			<br />
+						    {this.props.i18n['modal.body.3']}
+						    <br />
+						    <br />
+						    <b>{this.props.i18n['modal.body.4']}</b>
+			 		   		
+			    			
+						</h4>
+	           		</Modal.Body>
+	          		<Modal.Footer>
+	           			 <Button onClick={this.closeModal}>{this.props.i18n['close']}</Button>
+	         	    </Modal.Footer>
+	        		</Modal>
+				</Col>
+				<Col xs={2} xsOffset={10}>	 
+					<label for="languageSelect">{this.props.i18n['language']}:</label>
+					<select id="languageSelect" name="languageSelect" onChange={this.props.changeLanguage}>
+						<option value="en">English</option>
+						<option value="fr">Français</option>
+					</select>
+
+				</Col>
 
 		  	</Panel>
-		
-		</Row>
-      	<Row>
-	  	    <Col xs={6} md={1}>
-	  	    	<Panel>
-		  	    	<RiskLevel allocationChange={this.handleAllocationChange.bind(this)}/>
-		  	    </Panel>
-	  	    </Col>
-	  	    <Col xs={12} md={8} >
-	  	    	<Panel>
-		  	    	<GameChart msci={msciWorld} startDate={this.state.startDate} chartData={this.state.chartData} bands={this.state.bands} />
-		  	    </Panel>
-	  	    </Col>
-	  	     <Col xs={12} md={3}>
-	  	     	<Panel>
-	  	    		<Portfolio title="Your portfolio" value={this.state.value}/>
-	  	    		<Portfolio title="100% invested portfolio" value={this.state.reference} />
-	  	    	</Panel>
-	  	    </Col>
-	  	 </Row>
-      </div>
-    );
-  }
-}
+			</Row>
+	      	<Row>
+		  	    <Col xs={6} md={1}>
+		  	    	<Panel>
+			  	    	<RiskLevel allocationChange={this.handleAllocationChange.bind(this)} i18n={this.props.i18n}/>
+			  	    </Panel>
+		  	    </Col>
+		  	    <Col xs={12} md={8} >
+		  	    	<Panel>
+			  	    	<GameChart msci={msciWorld} startDate={this.state.startDate} chartData={this.state.chartData} bands={this.state.bands} i18n={this.props.i18n} />
+			  	    </Panel>
+		  	    </Col>
+		  	     <Col xs={12} md={3}>
+		  	     	<Panel>
+		  	    		<Portfolio title={this.props.i18n['your.portfolio.title']} value={this.state.value}/>
+		  	    		<Portfolio title={this.props.i18n['reference.portfolio.title']} value={this.state.reference} />
+		  	    	</Panel>
+		  	    </Col>
+		  	 </Row>
+	      </div>
+	    );
+	  }
+	}
 export default Game;
