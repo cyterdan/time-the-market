@@ -26,8 +26,12 @@ var i18n = {
     'end.title.eq' : "You performed exactly as market did. did you keep your allocation at 100% stocks for 8 years ?",
     'end.win.by' :"You beat the market by",
     'end.lose.by' : "You were beaten by the market by",
-    'game.speed' :"Game speed"
-
+    'game.speed' :"Game speed",
+    'game.speed.5000' : "5 seconds (slow)",
+    'game.speed.2000' : "1 month => 2 seconds",
+    'game.speed.1000' : "1 month => 1 seconds",
+    'game.speed.500' : "1 month => 0.5 seconds",
+    'game.speed.100' : "1 month => 0.1 seconds (crazy fast)"
   },
   'fr' : {
     'title' : 'Le but de ce jeu est de démontrer la difficulté à battre le marché',
@@ -55,7 +59,12 @@ var i18n = {
     'end.title.eq' : "Vous avez la même performance que le marché. Avez vous gardé la même allocation pendant 8 ans ?",
     'end.win.by' :"Vous avez battu le marché de",
     'end.lose.by' : "Le marché vous a battu de",
-    'game.speed' :"Vitesse du jeu.."
+    'game.speed' :"Vitesse du jeu..",
+    'game.speed.5000' : "1 mois => 5 secondes (lent)",
+    'game.speed.2000' : "1 mois => 2 secondes",
+    'game.speed.1000' : "1 mois => 1 secondes",
+    'game.speed.500' : "1 mois => 0.5 secondes",
+    'game.speed.100' : "1 mois => 0.1 secondes (mode fou)"
   }
 }
 

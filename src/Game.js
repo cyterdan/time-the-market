@@ -30,7 +30,8 @@ const initialState = {
     		value : 10000,
     		reference : 10000,
     		showModal: false,
-    		gameEnded : false
+    		gameEnded : false,
+    		gameSpeed : 2000
   		};
 
 class Game extends Component {
@@ -41,6 +42,13 @@ class Game extends Component {
   		this.state = initialState;
   
 	};
+
+	reset(){
+		var speed = this.state.gameSpeed;
+		var rand = randomIntFromInterval(0, msciWorld.length-12*8);
+		this.state = initialState;
+		this.setState({gameSpeed : speed});
+	}
 
     risk(proportion) {
         if (proportion === 0)
@@ -66,6 +74,11 @@ class Game extends Component {
 			  		label:label
 			  	}])
 			});
+	}
+
+	changeSpeed(e){
+		var speed = e.target.value;
+		this.setState({gameSpeed:speed});
 	}
 
 
@@ -102,7 +115,7 @@ class Game extends Component {
   	
   	if(this.state.firstChange){
   		
-  		var intervalId = setInterval( this.updateData.bind(this) , 100);
+  		var intervalId = setInterval( this.updateData.bind(this) , this.state.gameSpeed);
   		this.setState({currentProportion : e,firstChange :false,intervalId:intervalId,lastDate:this.state.startDate});
   	}
   	else{
@@ -164,7 +177,7 @@ class Game extends Component {
 	         	    </Modal.Footer>
 	        		</Modal>
 				</Col>
-				<Col xs={2} xsOffset={10}>	 
+				<Col xs={1} xsOffset={10}>	 
 					
 					<select id="languageSelect" name="languageSelect" onChange={this.props.changeLanguage}>
 						<option value="0">{this.props.i18n['language']}...</option>
@@ -173,6 +186,22 @@ class Game extends Component {
 					</select>
 
 				</Col>
+					<br />
+
+				<Row>
+				<Col xs={2} xsOffset={10}>	 
+					
+					<select id="speedSelect" name="speedSelect" onChange={this.changeSpeed.bind(this)}>
+						<option value="2000">{this.props.i18n['game.speed']}...</option>
+						<option value="5000">{this.props.i18n['game.speed.5000']}</option>
+						<option value="2000">{this.props.i18n['game.speed.2000']}</option>
+						<option value="1000">{this.props.i18n['game.speed.1000']}</option>
+						<option value="500">{this.props.i18n['game.speed.500']}</option>
+						<option value="100">{this.props.i18n['game.speed.100']}</option>
+					</select>
+
+				</Col>
+				</Row>
 
 		  	</Panel>
 			</Row>
@@ -196,7 +225,7 @@ class Game extends Component {
 		  	    	</Panel>
 		  	    	<Panel>
 		  	    		<EndPanel portfolio={this.state.value} reference={this.state.reference} gameEnded={this.state.gameEnded} i18n={this.props.i18n} startDate={msciWorld[this.state.rand][0]} endDate={msciWorld[this.state.i-1][0]}/>
-
+		  	    		<Button id="reset" onClick={this.reset.bind(this)}>Reset</Button>
 		  	    	</Panel>
 		  	    </Col>
 		  	 </Row>
