@@ -4,6 +4,7 @@ import './App.css';
 import RiskLevel from './RiskLevel'
 import GameChart from './GameChart'
 import Portfolio from './Portfolio'
+import EndPanel from './EndPanel'
 import msciWorld from './msciWorld'
 
 //generate random integer between min and max
@@ -28,7 +29,8 @@ const initialState = {
     		bands : [],
     		value : 10000,
     		reference : 10000,
-    		showModal: false
+    		showModal: false,
+    		gameEnded : false
   		};
 
 class Game extends Component {
@@ -89,6 +91,7 @@ class Game extends Component {
             if(this.state.i-this.state.rand > 8 * 12){
             	clearInterval(this.state.intervalId);
             	this.addBand(this.state.lastDate,this.state.currentDate,this.risk(this.state.currentProportion).color,this.risk(this.state.currentProportion).label);
+            	this.setState({gameEnded:true});
             }
 
            
@@ -99,7 +102,7 @@ class Game extends Component {
   	
   	if(this.state.firstChange){
   		
-  		var intervalId = setInterval( this.updateData.bind(this) , 1000);
+  		var intervalId = setInterval( this.updateData.bind(this) , 100);
   		this.setState({currentProportion : e,firstChange :false,intervalId:intervalId,lastDate:this.state.startDate});
   	}
   	else{
@@ -162,8 +165,9 @@ class Game extends Component {
 	        		</Modal>
 				</Col>
 				<Col xs={2} xsOffset={10}>	 
-					<label for="languageSelect">{this.props.i18n['language']}:</label>
+					
 					<select id="languageSelect" name="languageSelect" onChange={this.props.changeLanguage}>
+						<option value="0">{this.props.i18n['language']}...</option>
 						<option value="en">English</option>
 						<option value="fr">Français</option>
 					</select>
@@ -185,8 +189,14 @@ class Game extends Component {
 		  	    </Col>
 		  	     <Col xs={12} md={3}>
 		  	     	<Panel>
+		  	    		
 		  	    		<Portfolio title={this.props.i18n['your.portfolio.title']} value={this.state.value}/>
 		  	    		<Portfolio title={this.props.i18n['reference.portfolio.title']} value={this.state.reference} />
+
+		  	    	</Panel>
+		  	    	<Panel>
+		  	    		<EndPanel portfolio={this.state.value} reference={this.state.reference} gameEnded={this.state.gameEnded} i18n={this.props.i18n} startDate={msciWorld[this.state.rand][0]} endDate={msciWorld[this.state.i-1][0]}/>
+
 		  	    	</Panel>
 		  	    </Col>
 		  	 </Row>

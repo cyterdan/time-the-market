@@ -23,8 +23,10 @@ class App extends Component {
 
   changeLanguage(e){
     var lang = e.target.value
-    this.state.lang = {};
-    this.setState({lang : i18n[lang]});
+    if (lang!='0'){
+      this.state.lang = {};
+      this.setState({lang : i18n[lang]});
+    }
   }
 
   render() {

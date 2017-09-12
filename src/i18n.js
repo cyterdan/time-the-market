@@ -18,17 +18,26 @@ var i18n = {
     'stocks' : "Stocks",
     "chart.title": "MSCI World Index",
     "xaxis.title" : "Months elapsed",
-    "yaxis.title" : "Value"
+    "yaxis.title" : "Value",
+    'end.between' :"This was the actual market between",
+    'end.and' : "and",
+    'end.title.win' : "Congratulations !",
+    'end.title.lose' : "Rats !",
+    'end.title.eq' : "You performed exactly as market did. did you keep your allocation at 100% stocks for 8 years ?",
+    'end.win.by' :"You beat the market by",
+    'end.lose.by' : "You were beaten by the market by",
+    'game.speed' :"Game speed"
+
   },
   'fr' : {
-    'title' : 'Le but de ce jeu est de démontrer la difficulté à "timer" le marché',
+    'title' : 'Le but de ce jeu est de démontrer la difficulté à battre le marché',
     'subtitle1' : "Librement inspiré de ",
     'subtitleLink' :'ce jeu ',
     'subtitle2' :  ' mais adapté à un investissement en assurance-vie',
-    'instructionBtn' : 'Comment jouer',
+    'instructionBtn' : 'Comment jouer ?',
     'language' : 'Langue',
     'modal.title' :'Comment jouer ?',
-    'modal.body.1' : 'Vous avez un capital de départ de 10000€.',
+    'modal.body.1' : 'Votre capital de départ est de 10 000€.',
     'modal.body.2' :"Sur une période de 8 ans (choisie aléatoirement), vous allez choisir une exposition au marché action (on utilise l'indice MSCI World dans ce jeu). Le capital restant sera investi dans un fond euro (rendement de 2%/an)",
     'modal.body.3' : "Vous pouvez, bien sûr, changer votre allocation à tout moment si vous sentez qu'un retournement approche.	A la fin des 8 ans, votre stratégie sera comparée à un portefeuille 100% investi en actions.",
     'modal.body.4' : "Le jeu démarre dès que vous choisissez votre allocation de départ.",
@@ -38,7 +47,15 @@ var i18n = {
     'stocks' : "Actions",
     "chart.title": "MSCI World Index",
     "xaxis.title" : "Mois",
-    "yaxis.title" : "Capital"
+    "yaxis.title" : "Capital",
+    'end.between' :"Vous avez jouez sur entre",
+    'end.and' : "et",
+    'end.title.win' : "Félicitations !",
+    'end.title.lose' : "Merde !",
+    'end.title.eq' : "Vous avez la même performance que le marché. Avez vous gardé la même allocation pendant 8 ans ?",
+    'end.win.by' :"Vous avez battu le marché de",
+    'end.lose.by' : "Le marché vous a battu de",
+    'game.speed' :"Vitesse du jeu.."
   }
 }
 
