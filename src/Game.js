@@ -192,7 +192,7 @@ class Game extends Component {
 				<Col xs={2} xsOffset={10}>	 
 					
 					<select id="speedSelect" name="speedSelect" onChange={this.changeSpeed.bind(this)}>
-						<option value="2000">{this.props.i18n['game.speed']}...</option>
+						<option value="1000">{this.props.i18n['game.speed']}...</option>
 						<option value="5000">{this.props.i18n['game.speed.5000']}</option>
 						<option value="2000">{this.props.i18n['game.speed.2000']}</option>
 						<option value="1000">{this.props.i18n['game.speed.1000']}</option>
