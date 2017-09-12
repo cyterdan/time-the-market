@@ -47,7 +47,7 @@ class Game extends Component {
 		var speed = this.state.gameSpeed;
 		var rand = randomIntFromInterval(0, msciWorld.length-12*8);
 		this.state = initialState;
-		this.setState({gameSpeed : speed});
+		this.setState({gameSpeed : speed,i : rand,rand : rand,startDate : dateFromStr(msciWorld[rand][0])});
 	}
 
     risk(proportion) {
