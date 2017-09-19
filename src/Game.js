@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Col,Row,Panel,Button,Modal,FormControl} from 'react-bootstrap';
+import { Col,Row,Panel,Button,Modal} from 'react-bootstrap';
 import './App.css';
 import RiskLevel from './RiskLevel'
 import GameChart from './GameChart'
@@ -223,10 +223,12 @@ class Game extends Component {
 		  	    		<Portfolio title={this.props.i18n['reference.portfolio.title']} value={this.state.reference} />
 
 		  	    	</Panel>
+		  	    	{this.state.gameEnded?
 		  	    	<Panel>
 		  	    		<EndPanel portfolio={this.state.value} reference={this.state.reference} gameEnded={this.state.gameEnded} i18n={this.props.i18n} startDate={msciWorld[this.state.rand][0]} endDate={msciWorld[this.state.i-1][0]}/>
-		  	    		<Button id="reset" onClick={this.reset.bind(this)}>Reset</Button>
+		  	    		<Button id="reset" onClick={this.reset.bind(this)} >Reset</Button>
 		  	    	</Panel>
+		  	    		:null}
 		  	    </Col>
 		  	 </Row>
 	      </div>

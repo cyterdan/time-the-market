@@ -1,20 +1,17 @@
 import React, { Component } from 'react';
-import { Button,Badge} from 'react-bootstrap';
+import { Badge} from 'react-bootstrap';
 
 import './App.css';
 
 
 class EndPanel extends Component {
-  constructor(props) {
-      super(props);
-  
-  };
+
 
   render() {
   		var ours = this.props.portfolio;
   		var ref = this.props.reference;
   		if(this.props.gameEnded){
-		    if(ours==ref){
+		    if(ours===ref){
 		    	return (
 			    	<div>
 			  		   	<h3>{this.props.i18n['end.title.eq']}</h3>

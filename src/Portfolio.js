@@ -1,15 +1,9 @@
 import React, { Component } from 'react';
-import { Button,ListGroup,ListGroupItem} from 'react-bootstrap';
-
 import './App.css';
 
 class Portfolio extends Component {
 
 
-  constructor(props) {
-      super(props);
-  
-  };
 
   render() {
     return (
