@@ -177,31 +177,30 @@ class Game extends Component {
 	         	    </Modal.Footer>
 	        		</Modal>
 				</Col>
-				<Col xs={1} xsOffset={10}>	 
-					
-					<select id="languageSelect" name="languageSelect" onChange={this.props.changeLanguage}>
-						<option value="0">{this.props.i18n['language']}...</option>
-						<option value="en">English</option>
-						<option value="fr">Français</option>
-					</select>
+					<Col xs={1} xsOffset={10}>	 
+						
+						<select id="languageSelect" name="languageSelect" onChange={this.props.changeLanguage}>
+							<option value="0">{this.props.i18n['language']}...</option>
+							<option value="en">English</option>
+							<option value="fr">Français</option>
+						</select>
 
-				</Col>
-					<br />
+					</Col>
+						<br />
 
-				<Row>
-				<Col xs={2} xsOffset={10}>	 
-					
-					<select id="speedSelect" name="speedSelect" onChange={this.changeSpeed.bind(this)}>
-						<option value="1000">{this.props.i18n['game.speed']}...</option>
-						<option value="5000">{this.props.i18n['game.speed.5000']}</option>
-						<option value="2000">{this.props.i18n['game.speed.2000']}</option>
-						<option value="1000">{this.props.i18n['game.speed.1000']}</option>
-						<option value="500">{this.props.i18n['game.speed.500']}</option>
-						<option value="100">{this.props.i18n['game.speed.100']}</option>
-					</select>
+					<Row>
+						<Col xs={2} xsOffset={10}>	 
+							
+							<select id="speedSelect" name="speedSelect" onChange={this.changeSpeed.bind(this)}>
+								<option value="500">{this.props.i18n['game.speed']}...</option>
+								<option value="2000">{this.props.i18n['game.speed.2000']}</option>
+								<option value="1000">{this.props.i18n['game.speed.1000']}</option>
+								<option value="500">{this.props.i18n['game.speed.500']}</option>
+								<option value="100">{this.props.i18n['game.speed.100']}</option>
+							</select>
 
-				</Col>
-				</Row>
+						</Col>
+					</Row>
 
 		  	</Panel>
 			</Row>
